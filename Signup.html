@@ -3,19 +3,29 @@
 	<title>Group 4's landing page (demo)</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
-       <!--<link href="css/styles.css" rel="stylesheet">	-->
+       <link href="css/signup.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 <body>
 
-<h1 id="title">Signup Page</h1>
 
-<div id="loginDiv">
+
+<div id="SignupDiv">
+	<h1 id="title">Signup Page</h1>
+
+	<span id="inner-title">FirstName: </span>
+	<input type="text" id="FirstName" placeholder="First Name" /><br />
+
+	<span id="inner-title">Last Name: </span>
+	<input type="text" id="LastName" placeholder="Last Name"/><br />
+
 	<span id="inner-title">Username: </span>
 	<input type="text" id="loginName" placeholder="Username" /><br />
+
 	<span id="inner-title">Password: </span>
 	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Log In </button>
+
+	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Sign up </button>
 	<span id="loginResult"></span>
 </div>
 

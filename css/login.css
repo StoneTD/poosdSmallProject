@@ -1,0 +1,20 @@
+body{
+    background-image: url(/images/BackgroundLogSign.jpg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    /* background-attachment: fixed; */
+    background-size:cover;
+}
+
+#loginDiv{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid;
+    width: 200px;
+    padding: 25px;
+    text-align: center;
+    color:white;
+    background-color: black;
+}

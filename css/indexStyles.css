@@ -1,0 +1,188 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    list-style: none;
+    text-decoration: none;
+}
+
+header
+{
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 33px 9%;
+    background: transparent;
+}
+
+
+.logo
+{
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+.navlist
+{
+    display: flex;
+}
+
+.navlist a
+{
+    color: white;
+    margin-left: 60px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all .55s ease;
+}
+
+.navlist a:hover
+{
+    border-bottom: 2px solid white;
+}
+
+.hero
+{
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(245.59deg, #b6bd31dc, 0%, #918948 28.53%, #000000 75.52%);
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2rem;
+}
+
+section
+{
+   padding: 0 19%; 
+}
+
+.hero-text h5
+{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+}
+
+.hero-text h4
+{
+    font-family:  'Permanent Marker', cursive;
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 1;
+    color: white;
+    margin: 0 0 25px;
+}
+
+.hero-text p
+{
+    color: white;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+}
+
+.hero-img img
+{
+    width: 250px;
+    height: auto;
+}
+
+.hero-text a
+{
+    display: inline-block;
+    color: white;
+    background: linear-gradient(245.59deg, #b6bd31dc, 0%, #918948 28.53%, #000000 75.52%);
+    border: 2px solid white;
+    padding: 15px 35px;
+    line-height: 1.4;
+    font-family:'Poppins';
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all .55s ease;
+}
+
+.hero-text a:hover
+{
+    color: black;
+    background: white;
+    border: 2px solid white;
+    transform: translateY(5px);
+}
+
+@media (max-width: 1535px)
+{
+    header
+    {
+        padding: 15px 3%;
+        transition: .2s;
+    }
+}
+
+@media (max-width: 1535px)
+{
+    section
+    {
+        padding: 0 12%;
+        transform: .2s;
+    }
+}
+
+@media (max-width: 1340px)
+{
+    .hero-img img
+    {
+        width: 100%;
+        height: auto;
+    }
+    .hero-text h4
+    {
+        font-size: 75px;
+        margin: 0 0 30px;
+    }
+    .hero-text h5
+    {
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 1195px)
+{
+    section
+    {
+        padding: 0 3%;
+        transition: .2s;
+    }
+    .hero-text
+    {
+        padding-top: 115px;
+    }
+    .hero-img
+    {
+        text-align: center;
+    }
+    .hero-img img
+    {
+        width: 560px;
+        height: auto;
+    }
+    .hero
+    {
+        height: 100%;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
+}

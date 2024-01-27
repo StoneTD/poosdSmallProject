@@ -186,5 +186,4 @@ function searchColor()
 	{
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
-	
 }

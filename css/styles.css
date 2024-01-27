@@ -1,144 +1,188 @@
-body 
-{
-    background-color: #ffffff;
+*{
+    padding: 0;
     margin: 0;
-}
-
-button 
-{
-    background-color: #000000; /* Adjust color as needed */
-    border: rgb(0, 233, 229);
-    color: rgb(255, 255, 255);
-    padding: 10px 20px; /* Adjust padding as needed */
-    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    list-style: none;
     text-decoration: none;
-    display: inline-block;
-    justify-content: space-between;
-    font-size: 15px;
-    border-radius: 30px; /* Adjust radius for desired roundness */
 }
 
-.buttons
+header
 {
-    margin: 0 10px;
-}
-
-#title 
-{
-    font-size: 40px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
     width: 100%;
-    margin: 2% 0%;
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 33px 9%;
+    background: transparent;
 }
 
-.centered-container 
+
+.logo
+{
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+
+.navlist
 {
     display: flex;
-    justify-content: center;
-    align-items: space-between; 
-    width: 100%; 
-  }
-
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
 }
 
-#accessUIDiv
+.navlist a
 {
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+    color: white;
+    margin-left: 60px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all .55s ease;
 }
 
-#loginName
+.navlist a:hover
 {
-	font-size: 30px;
-}
-#loginPassword
-{
-	font-size: 30px;
-}
-#searchText
-{
-	font-size: 30px;
-}
-#colorText
-{
-	font-size: 30px;
+    border-bottom: 2px solid white;
 }
 
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+.hero
+{
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(245.59deg, #b6bd31dc, 0%, #918948 28.53%, #000000 75.52%);
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2rem;
 }
 
-#inner-title{
+section
+{
+   padding: 0 19%; 
+}
+
+.hero-text h5
+{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+}
+
+.hero-text h4
+{
+    font-family:  'Permanent Marker', cursive;
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 1;
+    color: white;
+    margin: 0 0 25px;
+}
+
+.hero-text p
+{
+    color: white;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+}
+
+.hero-img img
+{
+    width: 250px;
+    height: auto;
+}
+
+.hero-text a
+{
     display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: white;
+    background: linear-gradient(245.59deg, #b6bd31dc, 0%, #918948 28.53%, #000000 75.52%);
+    border: 2px solid white;
+    padding: 15px 35px;
+    line-height: 1.4;
+    font-family:'Poppins';
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all .55s ease;
 }
 
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+.hero-text a:hover
+{
+    color: black;
+    background: white;
+    border: 2px solid white;
+    transform: translateY(5px);
 }
 
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
+@media (max-width: 1535px)
+{
+    header
+    {
+        padding: 15px 3%;
+        transition: .2s;
+    }
 }
 
-#logoutButton{
-    width: 20%;
-    margin-left: 40%;
+@media (max-width: 1535px)
+{
+    section
+    {
+        padding: 0 12%;
+        transform: .2s;
+    }
 }
 
-select{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
+@media (max-width: 1340px)
+{
+    .hero-img img
+    {
+        width: 100%;
+        height: auto;
+    }
+    .hero-text h4
+    {
+        font-size: 75px;
+        margin: 0 0 30px;
+    }
+    .hero-text h5
+    {
+        margin-bottom: 25px;
+    }
 }
 
-#colorSearchResult{
-    display: none;
-}
-
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+@media (max-width: 1195px)
+{
+    section
+    {
+        padding: 0 3%;
+        transition: .2s;
+    }
+    .hero-text
+    {
+        padding-top: 115px;
+    }
+    .hero-img
+    {
+        text-align: center;
+    }
+    .hero-img img
+    {
+        width: 560px;
+        height: auto;
+    }
+    .hero
+    {
+        height: 100%;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
 }

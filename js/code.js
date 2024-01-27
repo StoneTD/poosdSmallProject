@@ -5,6 +5,44 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function doRegister(){
+	let userName = document.getElementById("username").value;
+	let password = document.getElementById("password").value;
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
+	//var incorrectInput = "";
+
+	if(!userName || !password || !firstName || !lastName){
+		alert("One field is being missed");
+		return;
+	}
+
+	let info = {userName, password: password, firstName, lastName};
+	let jsonPayload = JSON.stringify(info);
+	let url = urlBase + '/UserRegistration'+ extension
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try{
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				let jsonObject = JSON.parse(xhr.responseText);
+				if(jsonObject.success){
+					window.location.href = "contacts.html";
+				}
+				else{
+					document.getElementById("pass").innerHTML = "There was an issue signing up";
+				}
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch(err){
+		alert(err.message);
+	}
+}
+
 function doLogin()
 {
 	userId = 0;

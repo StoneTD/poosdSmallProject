@@ -6,35 +6,42 @@ let firstName = "";
 let lastName = "";
 
 function doRegister(){
-	let userName = document.getElementById("username").value;
+	let username = document.getElementById("username").value;
 	let password = document.getElementById("password").value;
 	firstName = document.getElementById("firstName").value;
 	lastName = document.getElementById("lastName").value;
 	//var incorrectInput = "";
 
-	if(!userName || !password || !firstName || !lastName){
+	if(!username || !password || !firstName || !lastName){
 		alert("One field is being missed");
 		return;
 	}
 
-	let info = {userName, password: password, firstName, lastName};
+	let info = { login: username, password: password, firstName: firstName, lastName: lastName };// data that will be send to the API. I believe the issue is here
 	let jsonPayload = JSON.stringify(info);
-	let url = urlBase + '/UserRegistration'+ extension
-
+	let url = urlBase + '/UserRegistration.'+ extension
+	//alert(url);
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
+	//alert("FirstName: " + firstName + " LastName: " + lastName + "Username: " + username + "Password: " + password);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
 	try{
 		xhr.onreadystatechange = function(){
 			if(this.readyState == 4 && this.status == 200){
 				let jsonObject = JSON.parse(xhr.responseText);
 				if(jsonObject.success){
+					alert("SUCCESS!");
 					window.location.href = "contacts.html";
 				}
 				else{
+					alert("Issue on the last step!");
 					document.getElementById("pass").innerHTML = "There was an issue signing up";
 				}
+			}
+			else{
+				alert("CONDITIONS WERE NOT MET");
+				alert("Ready state = " + this.readyState);
+				alert("status = " + this.status);		
 			}
 		};
 		xhr.send(jsonPayload);
@@ -138,7 +145,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		//document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 

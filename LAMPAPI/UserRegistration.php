@@ -13,8 +13,8 @@
     } else {
         // Hash the password
         // Insert new user into the database
-        $stmt = $conn->prepare("INSERT INTO Users (Login, Password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $inData["login"], $inData["password"]);
+        $stmt = $conn->prepare("INSERT INTO Users (firstName, lastName,Login, Password) VALUES (?, ?)");
+        $stmt->bind_param("ss",$inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {

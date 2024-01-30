@@ -17,9 +17,9 @@ function doRegister(){
 		return;
 	}
 
-	let info = { login: username, password: password, firstName: firstName, lastName: lastName };// data that will be send to the API. I believe the issue is here
+	let info = { login:username, password:password};// data that will be send to the API. I believe the issue is here
 	let jsonPayload = JSON.stringify(info);
-	let url = urlBase + '/UserRegistration.'+ extension
+	let url = urlBase + '/UserRegistration.'+ extension;
 	//alert(url);
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -41,7 +41,8 @@ function doRegister(){
 			else{
 				alert("CONDITIONS WERE NOT MET");
 				alert("Ready state = " + this.readyState);
-				alert("status = " + this.status);		
+				alert("status = " + this.status);	
+				alert("Response Text = " + xhr.responseText);  	
 			}
 		};
 		xhr.send(jsonPayload);

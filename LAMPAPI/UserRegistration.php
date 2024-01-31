@@ -4,9 +4,9 @@
 
     $login = $inData["login"];
     // Hash the password before storing it
-    $password = password_hash($inData["password"], PASSWORD_DEFAULT);
-    $FirstName = $inData["FirstName"];
-    $LastName = $inData["LastName"];
+    $password = $inData["password"];
+    $firstName = $inData["firstName"];
+    $lastName = $inData["lastName"];
 
     // Create database connection
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -26,8 +26,8 @@
             returnWithError("Login already in use");
         } else {
             // Login is unique, proceed with insertion
-            $stmt = $conn->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $login, $password, $FirstName, $LastName);
+            $stmt = $conn->prepare("INSERT INTO Users (Login, Password, firstName, lastName) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $login, $password, $firstName, $lastName);
             $stmt->execute();
             if ($stmt->affected_rows > 0) {
                 sendResponse(true, "Registration successful!");

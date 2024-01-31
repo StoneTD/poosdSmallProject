@@ -29,11 +29,6 @@
             $stmt = $conn->prepare("INSERT INTO Users (Login, Password, firstName, lastName) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $login, $password, $firstName, $lastName);
             $stmt->execute();
-            if ($stmt->affected_rows > 0) {
-                sendResponse(true, "Registration successful!");
-            } else {
-                sendResponse(false, "Error: " . $stmt->error);
-            }
             returnWithError(""); // No error, registration successful
         }
 
@@ -53,8 +48,5 @@
     function returnWithError($err) {
         $retValue = '{"error":"' . $err . '"}';
         sendResultInfoAsJson($retValue);
-    }
-    function sendResponse($success, $message) {
-        echo json_encode(array("success" => $success, "message" => $message));
     }
 ?>

@@ -1,35 +1,59 @@
 <?php
     // User Registration Script
     $inData = getRequestInfo();
+
+    $login = $inData["login"];
+    // Hash the password before storing it
+    $password = password_hash($inData["password"], PASSWORD_DEFAULT);
+    $FirstName = $inData["FirstName"];
+    $LastName = $inData["LastName"];
+
     // Create database connection
-    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+
     // Check connection
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // Validate input
-    if ($result->num_rows > 0) {
-        echo "Username already exists. Please choose a different one.";
+        returnWithError("Connection failed: " . $conn->connect_error);
     } else {
-        // Hash the password
-        // Insert new user into the database
-        $stmt = $conn->prepare("INSERT INTO Users (Login, Password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $inData["login"], $inData["password"]);
+        // Check if login already exists
+        $stmt = $conn->prepare("SELECT Login FROM Users WHERE Login=?");
+        $stmt->bind_param("s", $login);
         $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($stmt->affected_rows > 0) {
-            sendResponse(true, "Registration successful!");
+        if ($result->num_rows > 0) {
+            // Login already exists
+            returnWithError("Login already in use");
         } else {
-            sendResponse(false, "Error: " . $stmt->error);
+            // Login is unique, proceed with insertion
+            $stmt = $conn->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $login, $password, $FirstName, $LastName);
+            $stmt->execute();
+            if ($stmt->affected_rows > 0) {
+                sendResponse(true, "Registration successful!");
+            } else {
+                sendResponse(false, "Error: " . $stmt->error);
+            }
+            returnWithError(""); // No error, registration successful
         }
+
         $stmt->close();
+        $conn->close();
     }
-    $checkUser->close();
-    $conn->close();
-    function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+
+    function getRequestInfo() {
+        return json_decode(file_get_contents('php://input'), true);
+    }
+
+    function sendResultInfoAsJson($obj) {
+        header('Content-type: application/json');
+        echo $obj;
+    }
+
+    function returnWithError($err) {
+        $retValue = '{"error":"' . $err . '"}';
+        sendResultInfoAsJson($retValue);
+    }
     function sendResponse($success, $message) {
         echo json_encode(array("success" => $success, "message" => $message));
     }

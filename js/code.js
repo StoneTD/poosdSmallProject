@@ -29,12 +29,12 @@ function doRegister() {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse(xhr.responseText);
-				if (jsonObject.success) {
+				if (jsonObject === "") {
 					alert("SUCCESS!");
 					window.location.href = "contacts.html";
 				}
 				else {
-					alert("Issue on the last step!");
+					alert("Issue on the last step! error: " + xhr.responseText);
 					document.getElementById("pass").innerHTML = "There was an issue signing up";
 				}
 			}

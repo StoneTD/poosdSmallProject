@@ -18,9 +18,9 @@
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            echo "Registration successful!";
+            sendResponse(true, "Registration successful!");
         } else {
-            echo "Error: " . $stmt->error;
+            sendResponse(false, "Error: " . $stmt->error);
         }
         $stmt->close();
     }
@@ -30,4 +30,7 @@
 	{
 		return json_decode(file_get_contents('php://input'), true);
 	}
+    function sendResponse($success, $message) {
+        echo json_encode(array("success" => $success, "message" => $message));
+    }
 ?>

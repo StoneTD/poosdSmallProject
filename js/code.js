@@ -225,12 +225,13 @@ function showContactInfo(){
 
 function searchContact()
 {
+	readCookie();
 	let srch = document.getElementById("searchText").value;
 	//document.getElementById("colorSearchResult").innerHTML = "";
 	
 	let contactList = "";
 
-	let tmp = {search:srch,userId:userId};
+	let tmp = {firstName:srch, lastName:srch, userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/SearchContacts.' + extension;
@@ -247,7 +248,10 @@ function searchContact()
 				if(this.status == 200){
 					//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 					let jsonObject = JSON.parse( xhr.responseText );
-					
+					if (jsonObject.error) {
+						console.log(jsonObject.error);
+						return;
+					}
 					for( let i=0; i<jsonObject.results.length; i++ )
 					{
 						contactList += jsonObject.results[i];

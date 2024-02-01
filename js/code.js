@@ -225,38 +225,38 @@ function showContactInfo(){
 
 function searchContact()
 {
-	readCookie();
-	let srch = document.getElementById("searchText").value;
-	//document.getElementById("colorSearchResult").innerHTML = "";
+	  readCookie();
+	  let srch = document.getElementById("searchText").value;
+	  //document.getElementById("colorSearchResult").innerHTML = "";
 	
-	let contactList = "";
+	  let contactList = "";
 
-	// Split the search text into first and last name (assuming space as delimiter)
-	let names = srch.split(" ");
+	  // Split the search text into first and last name (assuming space as delimiter)
+	  let names = srch.split(" ");
 
-	// Check if we have first and last name (handle the case when there's only one word)
-	let firstName, lastName;
-	if (names.length === 1) {
-  		firstName = names[0];
-  		lastName = names[0]; // Set both to the same value if only one word
-	} else {
-  		firstName = names[0];
-  		lastName = names[1];
-	}
+	  // Check if we have first and last name (handle the case when there's only one word)
+	  let firstName, lastName;
+	  if (names.length === 1) {
+  		  firstName = names[0];
+  		  lastName = names[0]; // Set both to the same value if only one word
+	  } else {
+  		  firstName = names[0];
+  		  lastName = names[1];
+	  }
 
-	// Create the object with separate first and last name
-	let tmp = {
-  	firstName: firstName,
-  	lastName: lastName,
-  	userId: userId,
-	};
+	  // Create the object with separate first and last name
+	  let tmp = {
+  	  firstName: firstName,
+  	  lastName: lastName,
+  	  userId: userId,
+	  };
 
-	// Convert to JSON payload
-	let jsonPayload = JSON.stringify(tmp);
+	  // Convert to JSON payload
+	  let jsonPayload = JSON.stringify(tmp);
 
-	let url = urlBase + '/SearchContacts.' + extension;
+	  let url = urlBase + '/SearchContacts.' + extension;
 	
-	let xhr = new XMLHttpRequest();
+	  let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
@@ -274,7 +274,8 @@ function searchContact()
                             // Process results if available
                             contactList = "";
                             for (let i = 0; i < jsonObject.results.length; i++) {
-                                contactList += jsonObject.results[i];
+                                let contact = jsonObject.results[i];
+                                contactList += contact.FirstName + " " + contact.LastName + " " +contact.Email + " " + contact.Phone;
                                 if (i < jsonObject.results.length - 1) {
                                     contactList += "<br />\r\n";
                                 }
@@ -292,6 +293,7 @@ function searchContact()
                 }
             }
         };
+        console.log(jsonPayload);
         xhr.send(jsonPayload);
     } catch (err) {
         alert("Request failed:", err.message);

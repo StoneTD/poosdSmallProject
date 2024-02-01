@@ -8,10 +8,41 @@
 </head>
 <body>
 
+<p> Testing search</p>
 
-
-<div id="loginDiv">
+<div id="logOut">
 	<button type="button" id="loginButton" class="buttons" onclick="doLogout();"> Log Out </button>
+</div>
+
+<div id="addContactButton">
+	<button type="button" id="addContact" class="buttons" onclick="showContactInfo();"> Add Contact </button>
+</div>
+
+<div id="searchContact">
+	<input type="text" id="searchText" placeholder="Search" /><br />
+	<button type="button" id="addContactInfo" class="buttons" onclick="searchContact();"> Search </button>
+</div>
+
+
+
+<div id="contactInfo">
+    <span id="inner-title">First name: </span>
+	<input type="text" id="FirstNameContact" placeholder="First name" /><br />
+
+    <span id="inner-title">Last name: </span>
+	<input type="text" id="LastNameContact" placeholder="Last name" /><br />
+
+    <span id="inner-title">Email: </span>
+	<input type="text" id="EmailContact" placeholder="Email" /><br />
+
+    <span id="inner-title">Phone number: </span>
+	<input type="text" id="PhoneContact" placeholder="Phone number" /><br />
+
+
+    <button type="button" id="addContactInfo" class="buttons" onclick="addContact();"> Add </button>
+    <button type="button" id="cancelContact" class="buttons" onclick="hideContactInfo();"> Cancel </button>
+
+	
 </div>
 
 </body>

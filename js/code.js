@@ -231,8 +231,28 @@ function searchContact()
 	
 	let contactList = "";
 
-	let tmp = {firstName:srch, lastName:srch, userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
+	// Split the search text into first and last name (assuming space as delimiter)
+	let names = srch.split(" ");
+
+	// Check if we have first and last name (handle the case when there's only one word)
+	let firstName, lastName;
+	if (names.length === 1) {
+  		firstName = names[0];
+  		lastName = names[0]; // Set both to the same value if only one word
+	} else {
+  		firstName = names[0];
+  		lastName = names[1];
+	}
+
+	// Create the object with separate first and last name
+	let tmp = {
+  	firstName: firstName,
+  	lastName: lastName,
+  	userId: userId,
+	};
+
+	// Convert to JSON payload
+	let jsonPayload = JSON.stringify(tmp);
 
 	let url = urlBase + '/SearchContacts.' + extension;
 	

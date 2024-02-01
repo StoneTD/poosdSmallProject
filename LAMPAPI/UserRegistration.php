@@ -3,7 +3,6 @@
     $inData = getRequestInfo();
 
     $login = $inData["login"];
-    // Hash the password before storing it
     $password = $inData["password"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
@@ -23,13 +22,13 @@
 
         if ($result->num_rows > 0) {
             // Login already exists
-            returnWithError("Login already in use");
+            returnWithJsonResponse(false, "User already in use");
         } else {
             // Login is unique, proceed with insertion
             $stmt = $conn->prepare("INSERT INTO Users (Login, Password, firstName, lastName) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $login, $password, $firstName, $lastName);
             $stmt->execute();
-            returnWithError(""); // No error, registration successful
+            returnWithJsonResponse(true, "Registration successful"); // Registration was successful
         }
 
         $stmt->close();
@@ -42,11 +41,12 @@
 
     function sendResultInfoAsJson($obj) {
         header('Content-type: application/json');
-        echo $obj;
+        echo json_encode($obj);  // Convert the array to a JSON string
     }
 
-    function returnWithError($err) {
-        $retValue = '{"error":"' . $err . '"}';
+
+    function returnWithJsonResponse($success, $message) {
+        $retValue = array("success" => $success, "message" => $message);
         sendResultInfoAsJson($retValue);
     }
 ?>

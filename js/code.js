@@ -257,38 +257,43 @@ function searchContact()
 	let url = urlBase + '/SearchContacts.' + extension;
 	
 	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4) 
-			{
-				if(this.status == 200){
-					//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
-					let jsonObject = JSON.parse( xhr.responseText );
-					if (jsonObject.error) {
-						console.log(jsonObject.error);
-						return;
-					}
-					for( let i=0; i<jsonObject.results.length; i++ )
-					{
-						contactList += jsonObject.results[i];
-						if( i < jsonObject.results.length - 1 )
-						{
-							contactList += "<br />\r\n";
-						}
-					}
-					
-					document.getElementsByTagName("p")[0].innerHTML = contactList;
-				}
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		alert("Request failed:", err.message);
-	}
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    try {
+                        let jsonObject = JSON.parse(xhr.responseText);
+
+                        if (jsonObject.error) {
+                            // Handle error message from server
+                            alert(jsonObject.error);
+                        } else {
+                            // Process results if available
+                            contactList = "";
+                            for (let i = 0; i < jsonObject.results.length; i++) {
+                                contactList += jsonObject.results[i];
+                                if (i < jsonObject.results.length - 1) {
+                                    contactList += "<br />\r\n";
+                                }
+                            }
+                            document.getElementsByTagName("p")[0].innerHTML = contactList;
+                        }
+                    } catch (err) {
+                        // Handle parsing errors
+                        console.error("Error parsing response:", err);
+                        alert("An error occurred while processing the data.");
+                    }
+                } else {
+                    // Handle HTTP errors
+                    alert("Request failed:", this.statusText);
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        alert("Request failed:", err.message);
+    }
 }

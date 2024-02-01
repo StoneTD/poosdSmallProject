@@ -223,7 +223,7 @@ function showContactInfo(){
 	document.getElementById("contactInfo").style.display = 'block';
 }
 
-function searchContact()
+function searchContact(showAllContacts)
 {
 	  readCookie();
 	  let srch = document.getElementById("searchText").value;
@@ -236,12 +236,18 @@ function searchContact()
 
 	  // Check if we have first and last name (handle the case when there's only one word)
 	  let firstName, lastName;
-	  if (names.length === 1) {
+
+	//If we want to search a specific contact, give it a value, otherwise, leave it empty to load all contacts
+	  if(showAllContacts == 0){
+		if (names.length === 1) {
   		  firstName = names[0];
   		  lastName = names[0]; // Set both to the same value if only one word
-	  } else {
+	  	} 
+	 	 else {
   		  firstName = names[0];
   		  lastName = names[1];
+	  	}
+
 	  }
 
 	  // Create the object with separate first and last name
@@ -281,6 +287,7 @@ function searchContact()
                                 }
                             }
                             document.getElementsByTagName("p")[0].innerHTML = contactList;
+							makeTable(contactList);
                         }
                     } catch (err) {
                         // Handle parsing errors
@@ -299,3 +306,62 @@ function searchContact()
         alert("Request failed:", err.message);
     }
 }
+
+//Take the contactList and make a new table in base of that data
+function makeTable(contactList){
+	clearTable();
+	let rows = contactList.split("<br />\r\n");// contains the info of all rows separated
+
+	for(i =0; i < rows.length; i++){ // for each row do the following
+		// Get a reference to the table body
+		  var tbody = document.getElementById("contactsTable").getElementsByTagName("tbody")[0];
+
+	  	// Create a new row
+	  	var row = tbody.insertRow();
+		
+		 // Insert cells (adjust the number of cells as needed)
+		 var cell1 = row.insertCell();
+		 var cell2 = row.insertCell();
+		 var cell3 = row.insertCell();
+		 var cell4 = row.insertCell();
+		 var cell5 = row.insertCell();
+		 var cell6 = row.insertCell();
+
+		 let infoRow = rows[i].split(" "); //get the info for each field in the row
+	   
+		 // Add content to the cells
+		 cell1.innerHTML = infoRow[0];
+		 cell2.innerHTML = infoRow[1];
+		 cell3.innerHTML = infoRow[2];
+		 cell4.innerHTML = infoRow[3];
+		 cell5.innerHTML = "Rename Button";
+		 cell6.innerHTML = "Delete Button";
+	}
+
+
+	
+	 
+}
+
+//Every time we want to update the table, set it empty so that is easier to add to the table
+function clearTable() {
+	// Get a reference to the table
+	var table = document.getElementById("contactsTable");
+  
+	// Check if the table exists before further operations
+	if (table) {
+	  // Check if there is a tbody, create one if not
+	  var tbody = table.querySelector('tbody');
+	  if (!tbody) {
+		tbody = document.createElement('tbody');
+		table.appendChild(tbody);
+	  }
+  
+	  // Remove all rows from the tbody
+	  while (tbody.firstChild) {
+		tbody.removeChild(tbody.firstChild);
+	  }
+	} else {
+	  console.error("Table with ID 'contactsTable' not found.");
+	}
+  }

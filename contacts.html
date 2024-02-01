@@ -1,12 +1,10 @@
 <html>
 <head>
 	<title>Group 4's landing page (demo)</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
        <link href="css/contacts.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
-<body>
+<body onload="searchContact('1')">
 
 <p> Testing search</p>
 
@@ -20,7 +18,9 @@
 
 <div id="searchContact">
 	<input type="text" id="searchText" placeholder="Search" /><br />
-	<button type="button" id="addContactInfo" class="buttons" onclick="searchContact();"> Search </button>
+	<button type="button" id="addContactInfo" class="buttons" onclick="searchContact('0');"> Search </button>
+	<button type="button" id="refresh" class="buttons" onclick="searchContact('1');"> Refresh </button>
+
 </div>
 
 
@@ -45,5 +45,20 @@
 	
 </div>
 
+<table id="contactsTable">
+	<thead>
+	  <tr>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Email</th>
+		<th>Phone number</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  </tbody>
+  </table>
+
+  <script type="text/javascript" src="js/md5.js"></script>
+  <script type="text/javascript" src="js/code.js"></script>
 </body>
 </html>

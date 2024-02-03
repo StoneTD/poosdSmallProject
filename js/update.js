@@ -25,6 +25,25 @@ function makeTable(contactList){
 		cell2.innerHTML = infoRow[1];
 		cell3.innerHTML = infoRow[2];
 		cell4.innerHTML = infoRow[3];
+
+			// Create buttons for the last two columns
+			var deleteButton = document.createElement("button");
+			deleteButton.innerHTML = "Delete";
+			deleteButton.onclick = function() {
+				// Handle button click for column 5
+				// Add your custom logic here
+				alert("Button 1 clicked");
+			};
+			cell5.appendChild(deleteButton);
+	
+			var updateButton = document.createElement("button");
+			updateButton.innerHTML = "Update";
+			updateButton.onclick = function() {
+				// Handle button click for column 6
+				// Add your custom logic here
+				alert("Button 2 clicked");
+			};
+			cell6.appendChild(updateButton);	 
 	}	 
 }
 
@@ -59,7 +78,7 @@ function updateContact(action, contactId, data) {
 	const xhr = new XMLHttpRequest();
 	let url = urlBase + "/EditContact." + extension;
 	xhr.open('POST', url, true);
-	xhr.setRequestHeader('Content-Type', 'application/json'); // Set content type to JSON
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8"); // Set content type to JSON
 	xhr.onload = () => {
 		try {
 			const response = JSON.parse(xhr.responseText);

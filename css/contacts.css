@@ -13,6 +13,20 @@
     background-color: black;
 }
 
+#update-form{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid;
+    width: 200px;
+    padding: 25px;
+    text-align: center;
+    color:white;
+    background-color: black;
+}
+
 .hidden
 {
     display: none;

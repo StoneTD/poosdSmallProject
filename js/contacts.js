@@ -89,11 +89,27 @@ function addContact()
 }
 
 function hideContactInfo(){
+	document.getElementById("FirstNameContact").innerHTML = "";
+	document.getElementById("LastNameContact").innerHTML = "";
+	document.getElementById("EmailContact").innerHTML = "";
+	document.getElementById("PhoneContact").innerHTML = "";
 	document.getElementById("contactInfo").style.display = 'none';
 }
 
 function showContactInfo(){
 	document.getElementById("contactInfo").style.display = 'block';
+}
+
+function hideContactInfoUpdate(){
+	document.getElementById("FirstNameContactUpdate").innerHTML = "";
+	document.getElementById("LastNameContactUpdate").innerHTML = "";
+	document.getElementById("EmailContactUpdate").innerHTML = "";
+	document.getElementById("PhoneContactUpdate").innerHTML = "";
+	document.getElementById("update-form").style.display = 'none';
+}
+
+function showContactInfoUpdate(){
+	document.getElementById("update-form").style.display = 'block';
 }
 
 function searchContact(showAllContacts)
@@ -206,6 +222,25 @@ function searchContact(showAllContacts)
 			cell2.innerHTML = infoRow[1];
 			cell3.innerHTML = infoRow[2];
 			cell4.innerHTML = infoRow[3];
+				
+			var updateButton = document.createElement("button");
+			updateButton.innerHTML = "Update";
+			updateButton.onclick = function() {
+				// Handle button click for column 6
+				// Add your custom logic here
+				showContactInfoUpdate();
+			};
+			cell5.appendChild(updateButton);
+
+			// Create buttons for the last two columns
+			var deleteButton = document.createElement("button");
+			deleteButton.innerHTML = "Delete";
+			deleteButton.onclick = function() {
+				// Handle button click for column 5
+				// Add your custom logic here
+				alert("Want to delete contact?");
+			};
+			cell6.appendChild(deleteButton);
 		}	 
 	}
 
@@ -230,4 +265,29 @@ function searchContact(showAllContacts)
 		} else {
 		console.error("Table with ID 'contactsTable' not found.");
 		}
+	}
+
+
+	function updateContact(action, contactId, data) {
+		const xhr = new XMLHttpRequest();
+		let url = urlBase + "/EditContact." + extension;
+		xhr.open('POST', url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8"); // Set content type to JSON
+		xhr.onload = () => {
+			try {
+				const response = JSON.parse(xhr.responseText);
+				if (response.error) {
+					// Handle error
+					console.error('Request failed:', response.error);
+					alert('An error occurred: ' + response.error);
+				} else {
+					makeTable(xhr.responseText); // Update the table
+					document.getElementById("update-form").classList.add("hidden"); //hide the form again
+				}
+			} catch (error) {
+				console.error('Error parsing JSON response:', error);
+				alert('An unexpected error occurred.');
+			}
+		};
+		xhr.send(JSON.stringify(data)); // Send JSON-formatted data
 	}

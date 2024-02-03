@@ -1,19 +1,15 @@
 <?php
-
     $inData = getRequestInfo();
-    
+
     $searchResults = "";
     $searchCount = 0;
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-    if ($conn->connect_error) 
-    {
-        returnWithError( $conn->connect_error );
-    } 
-    else
-    {
+    if ($conn->connect_error) {
+        returnWithError($conn->connect_error);
+    } else {
         $stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?");
-        
+
         // Assuming $inData["firstName"] and $inData["lastName"] are the new separate parameters
         $firstName = "%" . $inData["firstName"] . "%";
         $lastName = "%" . $inData["lastName"] . "%";
@@ -21,7 +17,7 @@
 
         $stmt->bind_param("ssi", $firstName, $lastName, $userId);
         $stmt->execute();
-        
+            
         $result = $stmt->get_result();
         
         while($row = $result->fetch_assoc())

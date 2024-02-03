@@ -1,64 +1,55 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Group 4's landing page (demo)</title>
-       <link href="css/contacts.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager Main</title>
+    <link rel="stylesheet" href="css/contacts.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
 </head>
 <body onload="searchContact('1')">
 
-<p> Testing search</p>
+    <header>
+        <div id="logOut">
+            <button type="button" id="loginButton" class="buttons" onclick="doLogout();">Log Out</button>
+        </div>
+        <div id="addContactButton">
+            <button type="button" id="addContact" class="buttons" onclick="showContactInfo();">Add Contact</button>
+        </div>
+    </header>
 
-<div id="logOut">
-	<button type="button" id="loginButton" class="buttons" onclick="doLogout();"> Log Out </button>
-</div>
+    <section id="searchContact">
+        <input type="text" id="searchText" placeholder="Search" /><br />
+        <button type="button" id="addContactInfo" class="buttons" onclick="searchContact('0');">Search</button>
+        <button type="button" id="refresh" class="buttons" onclick="searchContact('1');">Refresh</button>
+    </section>
 
-<div id="addContactButton">
-	<button type="button" id="addContact" class="buttons" onclick="showContactInfo();"> Add Contact </button>
-</div>
+    <section id="contactInfo">
+        </section>
 
-<div id="searchContact">
-	<input type="text" id="searchText" placeholder="Search" /><br />
-	<button type="button" id="addContactInfo" class="buttons" onclick="searchContact('0');"> Search </button>
-	<button type="button" id="refresh" class="buttons" onclick="searchContact('1');"> Refresh </button>
+    <main>
+        <table id="contactsTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </main>
 
-</div>
+    <div id="update-form" class="hidden">
+        <input type="text" id="user-id" style="display: none;"> <input type="text" id="first-name">
+        <button type="submit">Update</button>
+    </div>
 
-
-
-<div id="contactInfo">
-    <span id="inner-title">First name: </span>
-	<input type="text" id="FirstNameContact" placeholder="First name" /><br />
-
-    <span id="inner-title">Last name: </span>
-	<input type="text" id="LastNameContact" placeholder="Last name" /><br />
-
-    <span id="inner-title">Email: </span>
-	<input type="text" id="EmailContact" placeholder="Email" /><br />
-
-    <span id="inner-title">Phone number: </span>
-	<input type="text" id="PhoneContact" placeholder="Phone number" /><br />
-
-
-    <button type="button" id="addContactInfo" class="buttons" onclick="addContact();"> Add </button>
-    <button type="button" id="cancelContact" class="buttons" onclick="hideContactInfo();"> Cancel </button>
-
-	
-</div>
-
-<table id="contactsTable">
-	<thead>
-	  <tr>
-		<th>First name</th>
-		<th>Last name</th>
-		<th>Email</th>
-		<th>Phone number</th>
-	  </tr>
-	</thead>
-	<tbody>
-	  </tbody>
-  </table>
-
-  <script type="text/javascript" src="js/md5.js"></script>
-  <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/contacts.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
 </body>
 </html>

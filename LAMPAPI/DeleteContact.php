@@ -1,4 +1,3 @@
-
 <?php
     // Function to get the request data
     function getRequestInfo()

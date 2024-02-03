@@ -148,7 +148,7 @@ function searchContact(showAllContacts)
 
                         if (jsonObject.error) {
                             // Handle error message from server
-                            alert(jsonObject.error);
+                            //alert(jsonObject.error);
                         } else {
                             // Process results if available
                             contactList = "";

@@ -24,8 +24,23 @@
         <button type="button" id="refresh" class="buttons" onclick="searchContact('1');">Refresh</button>
     </section>
 
-    <section id="contactInfo">
-        </section>
+    <div id="contactInfo">
+		<span id="inner-title">First name: </span>
+		<input type="text" id="FirstNameContact" placeholder="First name" /><br />
+	
+		<span id="inner-title">Last name: </span>
+		<input type="text" id="LastNameContact" placeholder="Last name" /><br />
+	
+		<span id="inner-title">Email: </span>
+		<input type="text" id="EmailContact" placeholder="Email" /><br />
+	
+		<span id="inner-title">Phone number: </span>
+		<input type="text" id="PhoneContact" placeholder="Phone number" /><br />
+	
+	
+		<button type="button" id="addContactInfo" class="buttons" onclick="addContact();"> Add </button>
+		<button type="button" id="cancelContact" class="buttons" onclick="hideContactInfo();"> Cancel </button>
+	</div>
 
     <main>
         <table id="contactsTable">

@@ -1,3 +1,6 @@
+const urlBase = 'http://poosdgroup4.xyz/LAMPAPI';
+const extension = 'php';
+
 function saveCookie()
 {
 	let minutes = 20;

@@ -108,9 +108,24 @@ function hideContactInfoUpdate(){
 	document.getElementById("update-form").style.display = 'none';
 }
 
-function showContactInfoUpdate(){
+function showContactInfoUpdate(contactInfo) 
+{
+	// Access the form fields by their IDs
+	const firstNameField = document.getElementById("FirstNameContactUpdate");
+	const lastNameField = document.getElementById("LastNameContactUpdate");
+	const emailField = document.getElementById("EmailContactUpdate");
+	const phoneField = document.getElementById("PhoneContactUpdate");
+
+	// Add more fields as needed (email, phone, etc.)
+  
+	firstNameField.value = contactInfo[0]; 
+	lastNameField.value = contactInfo[1];
+	emailField.value = contactInfo[2];
+	phoneField.value = contactInfo[3];
+
+	// Show the form
 	document.getElementById("update-form").style.display = 'block';
-}
+  }
 
 function searchContact(showAllContacts)
 {
@@ -223,14 +238,15 @@ function searchContact(showAllContacts)
 			cell3.innerHTML = infoRow[2];
 			cell4.innerHTML = infoRow[3];
 				
-			var updateButton = document.createElement("button");
-			updateButton.innerHTML = "Update";
-			updateButton.onclick = function() {
-				// Handle button click for column 6
-				// Add your custom logic here
-				showContactInfoUpdate();
-			};
-			cell5.appendChild(updateButton);
+			 // Create update button with event listener
+			 const updateButton = document.createElement("button");
+			 updateButton.innerHTML = "Update";
+			 cell5.appendChild(updateButton);
+		 
+			 updateButton.addEventListener("click", function()
+			 {
+			   showContactInfoUpdate(infoRow); // Use the current contact information
+			 });
 
 			// Create buttons for the last two columns
 			var deleteButton = document.createElement("button");

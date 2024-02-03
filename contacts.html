@@ -24,6 +24,12 @@
         <button type="button" id="refresh" class="buttons" onclick="searchContact('1');">Refresh</button>
     </section>
 
+    <script>
+        document.getElementById('searchText').addEventListener('input', function() {
+            searchContact('0');
+        });
+    </script>
+
     <div id="contactInfo">
 		<span id="inner-title">First name: </span>
 		<input type="text" id="FirstNameContact" placeholder="First name" /><br />

@@ -1,20 +1,144 @@
-body{
-    background-image: url(/images/BackgroundLogSign.jpg);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    /* background-attachment: fixed; */
-    background-size:cover;
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppings", sans-serif;
 }
 
-#loginDiv{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid;
-    width: 200px;
-    padding: 25px;
+body 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(/img/login.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper
+{
+    position: relative;
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1
+{
+    font-size: 36px;
     text-align: center;
-    color:white;
-    background-color: black;
+}
+
+.wrapper .input-box
+{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input
+{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder
+{
+    color: #fff;
+}
+
+.bx
+{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper .btn
+{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.wrapper .register-link
+{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a
+{
+   color: #fff; 
+   text-decoration: none;
+   font-weight: 600;
+}
+
+.register-link p a:hover
+{
+    text-decoration: underline;
+}
+
+#loginResult {
+    position:  absolute;
+    display: none; /* Hidden by default */
+    background-color: rgb(145, 13, 13);
+    color: white;
+    padding: 10px; /* Ensure padding is set for visual consistency */
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    bottom: -70px; /* Adjust this value to push it further down */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.error-message {
+    display: none;
+    margin-bottom: 20px;
+    background-color: rgb(145, 13, 13);
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+    padding: 10px;
+    width: 80%;
+    max-width: 300px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    font-family: 'Poppins', sans-serif; 
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block; /* Show the error message */
 }

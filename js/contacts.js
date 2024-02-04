@@ -76,6 +76,7 @@ function addContact()
 				if(this.status == 200){
 					alert("SUCCESS!");
 					hideContactInfo();
+					searchContact(1);
 				}
 			}
 		};
@@ -115,13 +116,14 @@ function showContactInfoUpdate(contactInfo)
 	const lastNameField = document.getElementById("LastNameContactUpdate");
 	const emailField = document.getElementById("EmailContactUpdate");
 	const phoneField = document.getElementById("PhoneContactUpdate");
-
+	const updateID = document.getElementById("updateID");
 	// Add more fields as needed (email, phone, etc.)
   
 	firstNameField.value = contactInfo[0]; 
 	lastNameField.value = contactInfo[1];
 	emailField.value = contactInfo[2];
 	phoneField.value = contactInfo[3];
+	updateID.textContent = contactInfo[4];
 
 	// Show the form
 	document.getElementById("update-form").style.display = 'block';
@@ -185,7 +187,7 @@ function searchContact(showAllContacts)
                             contactList = "";
                             for (let i = 0; i < jsonObject.results.length; i++) {
                                 let contact = jsonObject.results[i];
-                                contactList += contact.FirstName + " " + contact.LastName + " " +contact.Email + " " + contact.Phone;
+                                contactList += contact.FirstName + " " + contact.LastName + " " +contact.Email + " " + contact.Phone + " " +contact.ID;
                                 if (i < jsonObject.results.length - 1) {
                                     contactList += "<br />\r\n";
                                 }
@@ -248,15 +250,15 @@ function searchContact(showAllContacts)
 			   showContactInfoUpdate(infoRow); // Use the current contact information
 			 });
 
-			// Create buttons for the last two columns
-			var deleteButton = document.createElement("button");
-			deleteButton.innerHTML = "Delete";
-			deleteButton.onclick = function() {
-				// Handle button click for column 5
-				// Add your custom logic here
-				alert("Want to delete contact?");
-			};
-			cell6.appendChild(deleteButton);
+			 // Create update button with event listener
+			 const deleteButton = document.createElement("button");
+			 deleteButton.innerHTML = "Delete";
+			 cell6.appendChild(deleteButton);
+		 
+			 deleteButton.addEventListener("click", function()
+			 {
+			   deleteContact(infoRow); 
+			 });
 		}	 
 	}
 
@@ -284,26 +286,68 @@ function searchContact(showAllContacts)
 	}
 
 
-	function updateContact(action, contactId, data) {
-		const xhr = new XMLHttpRequest();
-		let url = urlBase + "/EditContact." + extension;
-		xhr.open('POST', url, true);
-		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8"); // Set content type to JSON
-		xhr.onload = () => {
-			try {
-				const response = JSON.parse(xhr.responseText);
-				if (response.error) {
-					// Handle error
-					console.error('Request failed:', response.error);
-					alert('An error occurred: ' + response.error);
-				} else {
-					makeTable(xhr.responseText); // Update the table
-					document.getElementById("update-form").classList.add("hidden"); //hide the form again
+	function updateContact() {
+		readCookie();
+		alert(userId);
+		let contactFirstNameUpdate = document.getElementById("FirstNameContactUpdate").value;
+		let contactLastNameUpdate = document.getElementById("LastNameContactUpdate").value;
+		let contactEmailUpdate = document.getElementById("EmailContactUpdate").value;
+		let contactPhoneUpdate =  document.getElementById("PhoneContactUpdate").value;
+		let idContact = document.getElementById("updateID").textContent;
+	
+		let info = {UserID: userId, FirstName:contactFirstNameUpdate, LastName:contactLastNameUpdate, Email:contactEmailUpdate, Phone:contactPhoneUpdate,ID:idContact };
+		let jsonPayload = JSON.stringify( info );
+	
+		let url = urlBase + '/EditContact.' + extension;
+		
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
+		{
+			xhr.onreadystatechange = function() 
+			{
+				if(this.readyState == 4){
+					if(this.status == 200){
+						alert("SUCCESS!");
+						hideContactInfoUpdate();
+						searchContact(1);
+					}
 				}
-			} catch (error) {
-				console.error('Error parsing JSON response:', error);
-				alert('An unexpected error occurred.');
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			alert("Request failed:", err.message);
+		}
+	}
+
+	function deleteContact(contactInfo){
+		var result = window.confirm("Confirm delition of contact: " + contactInfo[0] + " " + contactInfo[1]);
+		if (result) {
+			let id = contactInfo[4];
+			let info = {ID: id};
+			let jsonPayload = JSON.stringify( info );
+			let url = urlBase + '/DeleteContact.' + extension;
+			let xhr = new XMLHttpRequest();
+			xhr.open("POST", url, true);
+			try
+			{
+				xhr.onreadystatechange = function() 
+				{
+					if(this.readyState == 4){
+						if(this.status == 200){
+							alert("SUCCESS!");
+							searchContact(1);
+						}
+					}
+				};
+				xhr.send(jsonPayload);
 			}
-		};
-		xhr.send(JSON.stringify(data)); // Send JSON-formatted data
+			catch(err)
+			{
+				alert("Request failed:", err.message);
+			}
+		} 
 	}

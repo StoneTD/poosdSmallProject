@@ -250,15 +250,15 @@ function searchContact(showAllContacts)
 			   showContactInfoUpdate(infoRow); // Use the current contact information
 			 });
 
-			// Create buttons for the last two columns
-			var deleteButton = document.createElement("button");
-			deleteButton.innerHTML = "Delete";
-			deleteButton.onclick = function() {
-				// Handle button click for column 5
-				// Add your custom logic here
-				alert("Want to delete contact?");
-			};
-			cell6.appendChild(deleteButton);
+			 // Create update button with event listener
+			 const deleteButton = document.createElement("button");
+			 updateButton.innerHTML = "Delete";
+			 cell6.appendChild(updateButton);
+		 
+			 updateButton.addEventListener("click", function()
+			 {
+			   deleteContact(infoRow); 
+			 });
 		}	 
 	}
 
@@ -321,4 +321,33 @@ function searchContact(showAllContacts)
 		{
 			alert("Request failed:", err.message);
 		}
+	}
+
+	function deleteContact(contactInfo){
+		var result = window.confirm("Confirm delition of contact: " + contactInfo[0] + " " + contactInfo[1]);
+		if (result) {
+			let id = contactInfo[4];
+			let info = {ID: id};
+			let jsonPayload = JSON.stringify( info );
+			let url = urlBase + '/DeleteContact.' + extension;
+			let xhr = new XMLHttpRequest();
+			xhr.open("POST", url, true);
+			try
+			{
+				xhr.onreadystatechange = function() 
+				{
+					if(this.readyState == 4){
+						if(this.status == 200){
+							alert("SUCCESS!");
+							searchContact(1);
+						}
+					}
+				};
+				xhr.send(jsonPayload);
+			}
+			catch(err)
+			{
+				alert("Request failed:", err.message);
+			}
+		} 
 	}

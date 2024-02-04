@@ -76,6 +76,7 @@ function addContact()
 				if(this.status == 200){
 					alert("SUCCESS!");
 					hideContactInfo();
+					searchContact(1);
 				}
 			}
 		};
@@ -285,26 +286,39 @@ function searchContact(showAllContacts)
 	}
 
 
-	function updateContact(action, contactId, data) {
-		const xhr = new XMLHttpRequest();
-		let url = urlBase + "/EditContact." + extension;
-		xhr.open('POST', url, true);
-		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8"); // Set content type to JSON
-		xhr.onload = () => {
-			try {
-				const response = JSON.parse(xhr.responseText);
-				if (response.error) {
-					// Handle error
-					console.error('Request failed:', response.error);
-					alert('An error occurred: ' + response.error);
-				} else {
-					makeTable(xhr.responseText); // Update the table
-					document.getElementById("update-form").classList.add("hidden"); //hide the form again
+	function updateContact() {
+		readCookie();
+		alert(userId);
+		let contactFirstNameUpdate = document.getElementById("FirstNameContactUpdate").value;
+		let contactLastNameUpdate = document.getElementById("LastNameContactUpdate").value;
+		let contactEmailUpdate = document.getElementById("EmailContactUpdate").value;
+		let contactPhoneUpdate =  document.getElementById("PhoneContactUpdate").value;
+		let idContact = document.getElementById("updateID").textContent;
+	
+		let info = {UserID: userId, FirstName:contactFirstNameUpdate, LastName:contactLastNameUpdate, Email:contactEmailUpdate, Phone:contactPhoneUpdate,ID:idContact };
+		let jsonPayload = JSON.stringify( info );
+	
+		let url = urlBase + '/EditContact.' + extension;
+		
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", url, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		try
+		{
+			xhr.onreadystatechange = function() 
+			{
+				if(this.readyState == 4){
+					if(this.status == 200){
+						alert("SUCCESS!");
+						hideContactInfoUpdate();
+						searchContact(1);
+					}
 				}
-			} catch (error) {
-				console.error('Error parsing JSON response:', error);
-				alert('An unexpected error occurred.');
-			}
-		};
-		xhr.send(JSON.stringify(data)); // Send JSON-formatted data
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			alert("Request failed:", err.message);
+		}
 	}

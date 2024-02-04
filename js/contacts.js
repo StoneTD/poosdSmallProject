@@ -115,13 +115,14 @@ function showContactInfoUpdate(contactInfo)
 	const lastNameField = document.getElementById("LastNameContactUpdate");
 	const emailField = document.getElementById("EmailContactUpdate");
 	const phoneField = document.getElementById("PhoneContactUpdate");
-
+	const updateID = document.getElementById("updateID");
 	// Add more fields as needed (email, phone, etc.)
   
 	firstNameField.value = contactInfo[0]; 
 	lastNameField.value = contactInfo[1];
 	emailField.value = contactInfo[2];
 	phoneField.value = contactInfo[3];
+	updateID.textContent = contactInfo[4];
 
 	// Show the form
 	document.getElementById("update-form").style.display = 'block';
@@ -185,7 +186,7 @@ function searchContact(showAllContacts)
                             contactList = "";
                             for (let i = 0; i < jsonObject.results.length; i++) {
                                 let contact = jsonObject.results[i];
-                                contactList += contact.FirstName + " " + contact.LastName + " " +contact.Email + " " + contact.Phone;
+                                contactList += contact.FirstName + " " + contact.LastName + " " +contact.Email + " " + contact.Phone + " " +contact.ID;
                                 if (i < jsonObject.results.length - 1) {
                                     contactList += "<br />\r\n";
                                 }

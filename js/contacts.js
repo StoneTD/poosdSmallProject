@@ -252,10 +252,10 @@ function searchContact(showAllContacts)
 
 			 // Create update button with event listener
 			 const deleteButton = document.createElement("button");
-			 updateButton.innerHTML = "Delete";
-			 cell6.appendChild(updateButton);
+			 deleteButton.innerHTML = "Delete";
+			 cell6.appendChild(deleteButton);
 		 
-			 updateButton.addEventListener("click", function()
+			 deleteButton.addEventListener("click", function()
 			 {
 			   deleteContact(infoRow); 
 			 });

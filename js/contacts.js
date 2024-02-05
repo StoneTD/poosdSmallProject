@@ -240,19 +240,35 @@ function searchContact(showAllContacts)
 			cell3.innerHTML = infoRow[2];
 			cell4.innerHTML = infoRow[3];
 				
-			 // Create update button with event listener
-			 const updateButton = document.createElement("button");
-			 updateButton.innerHTML = "Update";
-			 cell5.appendChild(updateButton);
-		 
-			 updateButton.addEventListener("click", function()
-			 {
-			   showContactInfoUpdate(infoRow); // Use the current contact information
-			 });
+			const updateButton = document.createElement("button");
+			updateButton.classList.add("circular-button"); // Add circular button class
+			
+			// Create an <i> element for the icon
+			const updateIcon = document.createElement("i");
+			updateIcon.classList.add("fa", "fa-solid", "fa-rotate-right"); 
+			
+			// Append the <i> element to the button
+			updateButton.appendChild(updateIcon);
+			
+			cell5.appendChild(updateButton);
+			
+			updateButton.addEventListener("click", function () {
+			  showContactInfoUpdate(infoRow); // Use the current contact information
+			});
+
+
 
 			 // Create update button with event listener
 			 const deleteButton = document.createElement("button");
-			 deleteButton.innerHTML = "Delete";
+			 deleteButton.classList.add("circular-button"); // Add circular button class
+
+			 // Create an <i> element for the icon
+			const deleteIcon = document.createElement("i");
+			deleteIcon.classList.add("fa", "fa-solid", "fa-trash"); 
+
+			// Append the <i> element to the button
+			deleteButton.appendChild(deleteIcon);
+
 			 cell6.appendChild(deleteButton);
 		 
 			 deleteButton.addEventListener("click", function()

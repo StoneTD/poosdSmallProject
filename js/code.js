@@ -83,8 +83,6 @@ function doLogin()
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
-	
-	document.getElementById("loginResult").innerHTML = "";
 
 	let tmp = {login:login,password:password};
 //	var tmp = {login:login,password:hash};
@@ -103,27 +101,19 @@ function doLogin()
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
-		
+				
 				if( userId < 1 )
 				{		
-					let loginResultDiv = document.getElementById("loginResult");
-					loginResultDiv.innerHTML = "User/Password combination incorrect";
-					loginResultDiv.style.display = "block"; // Make the error message visible
-					
-					// Hide the message after 3 seconds (3000 milliseconds)
-					setTimeout(function() {
-						loginResultDiv.style.display = "none";
-					}, 1000);
-				
+					document.getElementById("loginResult").innerHTMl = "Incorrect combination.";
 					return;
 				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
-
-				saveCookie();
-	
-				window.location.href = "contacts.html";
+				else
+				{
+					firstName = jsonObject.firstName;
+					lastName = jsonObject.lastName;
+					saveCookie();
+					window.location.href = "contacts.html";
+				}
 			}
 		};
 		xhr.send(jsonPayload);

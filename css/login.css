@@ -106,39 +106,25 @@ body
     text-decoration: underline;
 }
 
-#loginResult {
-    position:  absolute;
-    display: none; /* Hidden by default */
-    background-color: rgb(145, 13, 13);
-    color: white;
-    padding: 10px; /* Ensure padding is set for visual consistency */
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    bottom: -70px; /* Adjust this value to push it further down */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-.error-message {
-    display: none;
-    margin-bottom: 20px;
-    background-color: rgb(145, 13, 13);
-    color: white;
-    text-align: center;
-    border-radius: 50px;
-    padding: 10px;
-    width: 80%;
-    max-width: 300px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    font-family: 'Poppins', sans-serif; 
-}
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block; /* Show the error message */
+.alert-box
+{
+   display: none;
+   position: absolute; 
+   top: 10%;
+   left: 50%;
+   transform: translateX(-50%);
+   min-width: 150px;
+   max-width: 90%;
+   width: auto;
+   height: auto;
+   padding: 10px;
+   text-transform: capitalize;
+   background: rgb(255, 119, 119);
+   border-top: 10px solid rgb(255, 37, 37);
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+   color: #fff;
+   font-family: 'Poppins', sans-serif;
+   text-align: center;
+   transition: 1s;
 }

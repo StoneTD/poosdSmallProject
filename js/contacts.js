@@ -90,10 +90,10 @@ function addContact()
 }
 
 function hideContactInfo(){
-	document.getElementById("FirstNameContact").innerHTML = "";
-	document.getElementById("LastNameContact").innerHTML = "";
-	document.getElementById("EmailContact").innerHTML = "";
-	document.getElementById("PhoneContact").innerHTML = "";
+	document.getElementById("FirstNameContact").value = "";
+	document.getElementById("LastNameContact").value = "";
+	document.getElementById("EmailContact").value = "";
+	document.getElementById("PhoneContact").value = "";
 	document.getElementById("contactInfo").style.display = 'none';
 }
 

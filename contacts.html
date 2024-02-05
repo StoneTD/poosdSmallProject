@@ -9,19 +9,25 @@
     <script src="https://kit.fontawesome.com/03c4b96a58.js" crossorigin="anonymous"></script>
 </head>
 <body onload="searchContact('1')">
-	<i class="fa-solid fa-rotate-right"></i>
     <header>
         <div id="logOut">
             <button type="button" id="loginButton" class="buttons" onclick="doLogout();">Log Out</button>
         </div>
-        <div id="addContactButton">
-            <button type="button" id="addContact" class="buttons" onclick="showContactInfo();">Add Contact</button>
-        </div>
+
     </header>
 
-    <section id="searchContact">
-        <input type="text" id="searchText" placeholder="Search" /><br />
-    </section>
+    <div id = "search-add-contact">
+        <section id="searchContact">
+            <input type="text" id="searchText" placeholder="Search" />
+        </section>
+    
+        <div id="addContactButton">
+            <button type="button" id="addContact" class="add-button" onclick="showContactInfo();">
+                <i class="fa-solid fa-user-plus"></i>
+            </button>
+        </div>
+    </div>
+
 
     <script>
         document.getElementById('searchText').addEventListener('input', function() {

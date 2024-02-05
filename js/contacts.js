@@ -182,6 +182,7 @@ function searchContact(showAllContacts)
                         if (jsonObject.error) {
                             // Handle error message from server
                             //alert(jsonObject.error);
+							clearTable(); // show nothing since nothing was found
                         } else {
                             // Process results if available
                             contactList = "";
@@ -245,7 +246,7 @@ function searchContact(showAllContacts)
 			
 			// Create an <i> element for the icon
 			const updateIcon = document.createElement("i");
-			updateIcon.classList.add("fa", "fa-solid", "fa-rotate-right"); 
+			updateIcon.classList.add("fa", "fa-solid", "fa-pen-to-square"); 
 			
 			// Append the <i> element to the button
 			updateButton.appendChild(updateIcon);

@@ -6,6 +6,11 @@
     <title>Contact Manager Main</title>
     <link rel="stylesheet" href="css/contacts.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
     <script src="https://kit.fontawesome.com/03c4b96a58.js" crossorigin="anonymous"></script>
 </head>
 <body onload="searchContact('1')">
@@ -15,7 +20,8 @@
         </div>
 
     </header>
-
+    <main>
+        
     <div id = "search-add-contact">
         <section id="searchContact">
             <input type="text" id="searchText" placeholder="Search" />
@@ -27,14 +33,28 @@
             </button>
         </div>
     </div>
-
+        <table id="contactsTable" border-radius: 17px >
+            <thead>
+                <tr style="background-color: black; color:white;">
+                    <th width="300">First Name</th>
+                    <th width="300">Last Name</th>
+                    <th width="300">Email</th>
+                    <th width="300">Phone Number</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </main>
 
     <script>
         document.getElementById('searchText').addEventListener('input', function() {
             searchContact('0');
         });
     </script>
-
+    
     <div id="contactInfo">
 		<span id="inner-title">First name: </span>
 		<input type="text" id="FirstNameContact" placeholder="First name" /><br />
@@ -53,20 +73,6 @@
 		<button type="button" id="cancelContact" class="buttons" onclick="hideContactInfo();"> Cancel </button>
 	</div>
 
-    <main>
-        <table id="contactsTable">
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                </tbody>
-        </table>
-    </main>
 
     <div id="update-form" class="hidden">
 		<span id="inner-title">First name: </span>

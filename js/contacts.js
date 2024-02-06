@@ -54,7 +54,6 @@ function doLogout()
 function addContact()
 {
 	readCookie();
-	alert(userId);
 	let contactFirstName = document.getElementById("FirstNameContact").value;
 	let contactLastName = document.getElementById("LastNameContact").value;
 	let contactEmail = document.getElementById("EmailContact").value;
@@ -74,7 +73,6 @@ function addContact()
 		{
 			if(this.readyState == 4){
 				if(this.status == 200){
-					alert("SUCCESS!");
 					hideContactInfo();
 					searchContact(1);
 				}
@@ -217,10 +215,10 @@ function searchContact(showAllContacts)
 	function makeTable(contactList){
 		clearTable();
 		let rows = contactList.split("<br />\r\n");// contains the info of all rows separated
+		// Get a reference to the table body
+		var tbody = document.getElementById("contactsTable").getElementsByTagName("tbody")[0];
 
 		for(i =0; i < rows.length; i++){ // for each row do the following
-			// Get a reference to the table body
-			var tbody = document.getElementById("contactsTable").getElementsByTagName("tbody")[0];
 
 			// Create a new row
 			var row = tbody.insertRow();
@@ -305,7 +303,6 @@ function searchContact(showAllContacts)
 
 	function updateContact() {
 		readCookie();
-		alert(userId);
 		let contactFirstNameUpdate = document.getElementById("FirstNameContactUpdate").value;
 		let contactLastNameUpdate = document.getElementById("LastNameContactUpdate").value;
 		let contactEmailUpdate = document.getElementById("EmailContactUpdate").value;
@@ -326,7 +323,6 @@ function searchContact(showAllContacts)
 			{
 				if(this.readyState == 4){
 					if(this.status == 200){
-						alert("SUCCESS!");
 						hideContactInfoUpdate();
 						searchContact(1);
 					}
@@ -355,7 +351,6 @@ function searchContact(showAllContacts)
 				{
 					if(this.readyState == 4){
 						if(this.status == 200){
-							alert("SUCCESS!");
 							searchContact(1);
 						}
 					}

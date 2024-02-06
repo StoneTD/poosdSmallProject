@@ -1,32 +1,53 @@
-
+body{
+  height: 100%;
+  background-image: url(/img/backgroundContacts.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; 
+  background-size:cover;
+}
 #contactInfo{
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
     display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid;
-    width: 200px;
-    padding: 25px;
-    text-align: center;
-    color:white;
-    background-color: black;
-}
-
-#contactsTable{
-    position:absolute;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid;
-    width: 50%;
+    width: 200px;
     padding: 25px;
     text-align: center;
     color:white;
     background-color: black;
+    z-index: 2;
 }
 
+#contactsTable{
+  border-radius: 10px;
+  border-collapse: collapse;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    width: 75%;
+    text-align: center;
+    color:black;
+  font-family: 'Montserrat', sans-serif;
+    background-color:gold;
+    z-index: 1;
+    font-weight: bold;
+}
+#contactsTable th, #contactsTable td {
+  border: 2px solid black; /* Add border color to both th and td */
+  height: 50px;
+}
+
+
 #update-form{
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
     display: none;
     position: absolute;
     top: 50%;
@@ -38,6 +59,7 @@
     text-align: center;
     color:white;
     background-color: black;
+    z-index: 2;
 }
 
 .hidden
@@ -47,10 +69,10 @@
 
 .circular-button {
     display: inline-block;
-    width: 30px; 
-    height: 30px; 
+    width: 40px; 
+    height: 40px; 
     border-radius: 50%;
-    background-color: #3498db;
+    background-color: #000000;
     color: #fff;
     cursor: pointer;
     border: none;
@@ -58,7 +80,7 @@
   }
   
   .circular-button i {
-    line-height: 30px; /* Should be equal to the height for vertical alignment */
+    line-height: 40px; /* Should be equal to the height for vertical alignment */
   }
 
   .add-button{
@@ -66,8 +88,8 @@
     width: 50px; 
     height: 50px; 
     border-radius: 50%;
-    background-color: #3498db;
-    color: #fff;
+    background-color: gold;
+    color: black;
     cursor: pointer;
     border: none;
     margin-left: 10px; 

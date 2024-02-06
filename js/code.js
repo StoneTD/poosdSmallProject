@@ -104,7 +104,15 @@ function doLogin()
 				
 				if( userId < 1 )
 				{		
-					document.getElementById("loginResult").innerHTMl = "Incorrect combination.";
+					let errorMessageDiv = document.getElementById("loginResult");
+					errorMessageDiv.innerHTML = "User/Password combination incorrect";
+					errorMessageDiv.style.display = "block"; // Make the error message visible
+				
+					// Hide the message after 3 seconds (3000 milliseconds)
+					setTimeout(function() {
+						errorMessageDiv.style.display = "none";
+					}, 3000);
+				
 					return;
 				}
 				else

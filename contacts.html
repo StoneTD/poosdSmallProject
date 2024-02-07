@@ -67,16 +67,20 @@
     <div id="contactInfo">
         <span id="add-contact-title" >Add Contact </span><br /><br />
 		<span id="inner-title">First name: </span>
-		<input type="text" id="FirstNameContact" placeholder="" /><br /><br />
+		<input type="text" id="FirstNameContact" placeholder="" /> 
+        <i id="firstError" class="fa-solid fa-circle-exclamation"  title="First name can't be empty!"></i><br /><br />
 	
 		<span id="inner-title">Last name: </span>
-		<input type="text" id="LastNameContact" placeholder="" /><br /><br />
+		<input type="text" id="LastNameContact" placeholder="" />
+        <i id="lastError" class="fa-solid fa-circle-exclamation" title="Last name can't be empty!"></i><br /><br />
 	
 		<span id="inner-title">Email: </span>
-		<input type="text" id="EmailContact" placeholder="" /><br /><br />
+		<input type="text" id="EmailContact" placeholder="" />
+        <i id="emailError" class="fa-solid fa-circle-exclamation" title="Invalid email address!"></i><br /><br />
 	
 		<span id="inner-title">Phone number: </span>
-		<input type="text" id="PhoneContact" placeholder="" /><br /><br />
+		<input type="text" id="PhoneContact" placeholder="" />
+        <i id="phoneError" class="fa-solid fa-circle-exclamation" title="Invalid phone number!"></i><br /><br />
 	
 	
 		<button type="button" id="addContactInfo" class="buttons" onclick="addContact();"> Add </button>
@@ -87,16 +91,20 @@
     <div id="update-form" class="hidden">
         <span id="update-contact-title" >Update Contact </span><br /><br />
 		<span id="inner-title">First name: </span>
-		<input type="text" id="FirstNameContactUpdate" placeholder="" /><br /><br />
+		<input type="text" id="FirstNameContactUpdate" placeholder="" />
+        <i id="firstErrorUpdate"class="fa-solid fa-circle-exclamation" title="First name can't be empty!"></i><br /><br />
 	
 		<span id="inner-title">Last name: </span>
-		<input type="text" id="LastNameContactUpdate" placeholder="" /><br /><br />
+		<input type="text" id="LastNameContactUpdate" placeholder="" />
+        <i id="lastErrorUpdate"class="fa-solid fa-circle-exclamation" title="Last name can't be empty!"></i><br /><br />
 	
 		<span id="inner-title">Email: </span>
-		<input type="text" id="EmailContactUpdate" placeholder="" /><br /><br />
+		<input type="text" id="EmailContactUpdate" placeholder="" />
+        <i id="emailErrorUpdate" class="fa-solid fa-circle-exclamation" title="Invalid email address!"></i><br /><br />
 	
 		<span id="inner-title">Phone number: </span>
-		<input type="text" id="PhoneContactUpdate" placeholder="" /><br /><br />
+		<input type="text" id="PhoneContactUpdate" placeholder="" />
+        <i id="phoneErrorUpdate"class="fa-solid fa-circle-exclamation" title="Invalid phone number!"></i><br /><br />
 
 
         <span id="updateID" style="color:black">HERE IS ID </span><br />

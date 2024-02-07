@@ -76,6 +76,13 @@ body{
   #contactInfo #addContactInfo:hover{
     background-color: white;
   }
+
+ .fa-solid.fa-circle-exclamation{
+    display: none; 
+    color: red; 
+    font-size: 24px; 
+    margin-left: 5px; 
+  }
   
 #update-form{
   border-radius: 10px;
@@ -253,8 +260,9 @@ body{
     top: 10%;
     left: 45%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 45px;
     font-weight: bold;
+    text-shadow: 10px 10px 10px #000000;
   }
 
 #logo {

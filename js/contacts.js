@@ -51,6 +51,52 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
+function validInputs(first, last, email, phone){
+	var res = true;
+	var firstIcon= document.getElementById("firstError");
+	var lastIcon= document.getElementById("lastError");
+	var emailIcon= document.getElementById("emailError");
+	var phoneIcon= document.getElementById("phoneError");
+
+	firstIcon.style.display= 'none';
+	lastIcon.style.display= 'none';
+	emailIcon.style.display= 'none';
+	phoneIcon.style.display= 'none';
+	document.getElementById("FirstNameContact").style.borderColor = "black";
+	document.getElementById("LastNameContact").style.borderColor = "black";
+	document.getElementById("EmailContact").style.borderColor = "black";
+	document.getElementById("PhoneContact").style.borderColor = "black";
+
+	if(!first){
+		document.getElementById("FirstNameContact").style.borderColor = "red";
+		firstIcon.style.display= 'inline-block';
+		res= false;
+	}
+
+	if(!last){
+		document.getElementById("LastNameContact").style.borderColor = "red";
+		lastIcon.style.display= 'inline-block';
+		res= false;
+	}
+	var phoneRegex = /^\d{10}$/;
+
+	if (!phoneRegex.test(phone)) {
+		document.getElementById("EmailContact").style.borderColor = "red";
+		phoneIcon.style.display= 'inline-block';
+		res= false;
+	}
+
+	var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+	if (!emailRegex.test(email)) {
+		document.getElementById("PhoneContact").style.borderColor = "red";
+		emailIcon.style.display= 'inline-block';
+		res= false;
+	}
+
+	return res;
+}
+
 function addContact()
 {
 	readCookie();
@@ -58,6 +104,8 @@ function addContact()
 	let contactLastName = document.getElementById("LastNameContact").value;
 	let contactEmail = document.getElementById("EmailContact").value;
 	let contactPhone =  document.getElementById("PhoneContact").value;
+
+	if(!validInputs(contactFirstName, contactLastName, contactEmail, contactPhone)) return;
 
 	let info = {UserID:userId, Phone:contactPhone, FirstName:contactFirstName, LastName:contactLastName, Email:contactEmail};
 	let jsonPayload = JSON.stringify( info );
@@ -92,6 +140,17 @@ function hideContactInfo(){
 	document.getElementById("LastNameContact").value = "";
 	document.getElementById("EmailContact").value = "";
 	document.getElementById("PhoneContact").value = "";
+
+	document.getElementById("firstError").style.display= 'none';
+	document.getElementById("lastError").style.display= 'none';
+	document.getElementById("emailError").style.display= 'none';
+	document.getElementById("phoneError").style.display= 'none';
+
+	document.getElementById("FirstNameContact").style.borderColor = "black";
+	document.getElementById("LastNameContact").style.borderColor = "black";
+	document.getElementById("EmailContact").style.borderColor = "black";
+	document.getElementById("PhoneContact").style.borderColor = "black";
+
 	document.getElementById("contactInfo").style.display = 'none';
 }
 
@@ -104,6 +163,17 @@ function hideContactInfoUpdate(){
 	document.getElementById("LastNameContactUpdate").innerHTML = "";
 	document.getElementById("EmailContactUpdate").innerHTML = "";
 	document.getElementById("PhoneContactUpdate").innerHTML = "";
+
+	document.getElementById("firstErrorUpdate").style.display= 'none';
+	document.getElementById("lastErrorUpdate").style.display= 'none';
+	document.getElementById("emailErrorUpdate").style.display= 'none';
+	document.getElementById("phoneErrorUpdate").style.display= 'none';
+	
+	document.getElementById("FirstNameContactUpdate").style.borderColor = "black";
+	document.getElementById("LastNameContactUpdate").style.borderColor = "black";
+	document.getElementById("EmailContactUpdate").style.borderColor = "black";
+	document.getElementById("PhoneContactUpdate").style.borderColor = "black";
+
 	document.getElementById("update-form").style.display = 'none';
 }
 
@@ -301,6 +371,53 @@ function searchContact(showAllContacts)
 	}
 
 
+	
+function validInputsUpdate(first, last, email, phone){
+	var res = true;
+	var firstIcon= document.getElementById("firstErrorUpdate");
+	var lastIcon= document.getElementById("lastErrorUpdate");
+	var emailIcon= document.getElementById("emailErrorUpdate");
+	var phoneIcon= document.getElementById("phoneErrorUpdate");
+	document.getElementById("FirstNameContactUpdate").style.borderColor = "black";
+	document.getElementById("LastNameContactUpdate").style.borderColor = "black";
+	document.getElementById("EmailContactUpdate").style.borderColor = "black";
+	document.getElementById("PhoneContactUpdate").style.borderColor = "black";
+
+	firstIcon.style.display= 'none';
+	lastIcon.style.display= 'none';
+	emailIcon.style.display= 'none';
+	phoneIcon.style.display= 'none';
+
+	if(!first){
+		document.getElementById("FirstNameContactUpdate").style.borderColor = "red";
+		firstIcon.style.display= 'inline-block';
+		res= false;
+	}
+
+	if(!last){
+		document.getElementById("LastNameContactUpdate").style.borderColor = "red";
+		lastIcon.style.display= 'inline-block';
+		res= false;
+	}
+	var phoneRegex = /^\d{10}$/;
+
+	if (!phoneRegex.test(phone)) {
+		document.getElementById("EmailContactUpdate").style.borderColor = "red";
+		phoneIcon.style.display= 'inline-block';
+		res= false;
+	}
+
+	var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+	if (!emailRegex.test(email)) {
+		document.getElementById("PhoneContactUpdate").style.borderColor = "red";
+		emailIcon.style.display= 'inline-block';
+		res= false;
+	}
+
+	return res;
+}
+
 	function updateContact() {
 		readCookie();
 		let contactFirstNameUpdate = document.getElementById("FirstNameContactUpdate").value;
@@ -308,6 +425,8 @@ function searchContact(showAllContacts)
 		let contactEmailUpdate = document.getElementById("EmailContactUpdate").value;
 		let contactPhoneUpdate =  document.getElementById("PhoneContactUpdate").value;
 		let idContact = document.getElementById("updateID").textContent;
+
+		if(!validInputsUpdate(contactFirstNameUpdate, contactLastNameUpdate, contactEmailUpdate, contactPhoneUpdate)) return;
 	
 		let info = {UserID: userId, FirstName:contactFirstNameUpdate, LastName:contactLastNameUpdate, Email:contactEmailUpdate, Phone:contactPhoneUpdate,ID:idContact };
 		let jsonPayload = JSON.stringify( info );

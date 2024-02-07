@@ -15,14 +15,23 @@
 </head>
 <body onload="searchContact('1')">
     <header>
-        <div id="logOut">
-            <button type="button" id="loginButton" class="buttons" onclick="doLogout();">Log Out</button>
+        <div id="logo-container">
+            <img id="logo" src="img/main.png" alt="Logo">
         </div>
 
     </header>
+
+    <div id="gold-right"> 
+        
+    <button type="button" id="loginButton" class="buttons" onclick="doLogout();">Log Out</button>
+    </div>
+
+
     <main>
         
+    <span id="welcomeText" style="color:white">Welcome to myUCF Contact Manager! </span><br />
     <div id = "search-add-contact">
+        
         <section id="searchContact">
             <input type="text" id="searchText" placeholder="Search" />
         </section>
@@ -56,17 +65,18 @@
     </script>
     
     <div id="contactInfo">
+        <span id="add-contact-title" >Add Contact </span><br /><br />
 		<span id="inner-title">First name: </span>
-		<input type="text" id="FirstNameContact" placeholder="First name" /><br />
+		<input type="text" id="FirstNameContact" placeholder="" /><br /><br />
 	
 		<span id="inner-title">Last name: </span>
-		<input type="text" id="LastNameContact" placeholder="Last name" /><br />
+		<input type="text" id="LastNameContact" placeholder="" /><br /><br />
 	
 		<span id="inner-title">Email: </span>
-		<input type="text" id="EmailContact" placeholder="Email" /><br />
+		<input type="text" id="EmailContact" placeholder="" /><br /><br />
 	
 		<span id="inner-title">Phone number: </span>
-		<input type="text" id="PhoneContact" placeholder="Phone number" /><br />
+		<input type="text" id="PhoneContact" placeholder="" /><br /><br />
 	
 	
 		<button type="button" id="addContactInfo" class="buttons" onclick="addContact();"> Add </button>
@@ -75,20 +85,21 @@
 
 
     <div id="update-form" class="hidden">
+        <span id="update-contact-title" >Update Contact </span><br /><br />
 		<span id="inner-title">First name: </span>
-		<input type="text" id="FirstNameContactUpdate" placeholder="First name" /><br />
+		<input type="text" id="FirstNameContactUpdate" placeholder="" /><br /><br />
 	
 		<span id="inner-title">Last name: </span>
-		<input type="text" id="LastNameContactUpdate" placeholder="Last name" /><br />
+		<input type="text" id="LastNameContactUpdate" placeholder="" /><br /><br />
 	
 		<span id="inner-title">Email: </span>
-		<input type="text" id="EmailContactUpdate" placeholder="Email" /><br />
+		<input type="text" id="EmailContactUpdate" placeholder="" /><br /><br />
 	
 		<span id="inner-title">Phone number: </span>
-		<input type="text" id="PhoneContactUpdate" placeholder="Phone number" /><br />
+		<input type="text" id="PhoneContactUpdate" placeholder="" /><br /><br />
 
 
-        <span id="updateID">HERE IS ID </span><br />
+        <span id="updateID" style="color:black">HERE IS ID </span><br />
 
 	
 	

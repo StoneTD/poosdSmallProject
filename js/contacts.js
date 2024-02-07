@@ -337,7 +337,7 @@ function searchContact(showAllContacts)
 	}
 
 	function deleteContact(contactInfo){
-		var result = window.confirm("Confirm delition of contact: " + contactInfo[0] + " " + contactInfo[1]);
+		var result = window.confirm("Confirm deletion of contact: " + contactInfo[0] + " " + contactInfo[1]);
 		if (result) {
 			let id = contactInfo[4];
 			let info = {ID: id};

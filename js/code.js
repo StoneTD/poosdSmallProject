@@ -50,8 +50,8 @@ function doRegister() {
       if (this.status == 200) {
         try {
           let jsonObject = JSON.parse(xhr.responseText);
-          if (jsonObject.success) {
-            alert("SUCCESS!");
+          if (jsonObject.success) 
+		  {
             window.location.href = "contacts.html";
           } else {
             document.getElementById("pass").innerHTML =

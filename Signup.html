@@ -1,31 +1,63 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Group 4's landing page (demo)</title>
-	<script type="text/javascript" src="js/md5.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+	content="IE-edge">
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1.0">
+	<title>Signup</title>
 	<script type="text/javascript" src="js/code.js"></script>
-       <link href="css/signup.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+	<!--Link to signup page styles-->
+    <link href="css/signup.css" rel="stylesheet">
+
+	<link rel="stylesheet"
+  	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
+
 <body>
-	<h1 id="pass"></h1>
-<div id="SignupDiv">
-	<h1 id="title">Signup Page</h1>
+	<div class="wrapper">
+		<form action="">
+			<h1>Signup</h1>
+			<div class="input-box">
+				<div class="input-field">
+					<input type="text" placeholder="first name"
+					id="firstName"required>
+					<i class='bx bxs-face'></i>
+				</div>
+				<div class="input-field">
+					<input type="text" placeholder="last name"
+					id="lastName" required>
+					<i class='bx bxs-face'></i>
+				</div>
+			</div>
+			<div class="input-box">
+				<div class="input-field">
+					<input type="text" id="username" placeholder="username"
+					required>
+					<i class='bx bxs-user-circle'></i>
+				</div>
+				<div class="input-field">
+					<input type="password" id="password" placeholder="password"
+					required>
+					<i class='bx bxs-key'></i>
+				</div>
+			</div>
+			<button type="button" class="btn" onclick="doRegister()">Signup</button>
 
-	<span id="titleFirstName">FirstName: </span>
-	<input type="text" id="firstName" placeholder="First Name" /><br />
+			<div class="signup-link">
+				<p>Already have an account? <a href="Login.html">Login</a></p>
+			</div>
 
-	<span id="titleLastName">Last Name: </span>
-	<input type="text" id="lastName" placeholder="Last Name"/><br />
-
-	<span id="titleUsername">Username: </span>
-	<input type="text" id="username" placeholder="Username" /><br />
-
-	<span id="titlePassword">Password: </span>
-	<input type="password" id="password" placeholder="Password"/><br />
-
-	<button type="button" id="loginButton" class="buttons" onclick="doRegister();"> Sign up </button>
-	<span id="loginResult"></span>
-</div>
+			<!--scrollreveal effect-->
+			<script src="https://unpkg.com/scrollreveal"></script>
+			<!--Custom js scripts link-->
+			<script src="js/script.js"></script>
+		</form>	
+	</div>
 
 </body>
+
 </html>
